@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: main  # DuckDB's default schema where seeds are loaded
+    description: Raw data tables from seeds
+    tables:
+      - name: raw_customers
+        description: Raw customer data from CSV seed
+      - name: raw_orders
+        description: Raw order data from CSV seed
+      - name: raw_payments
+        description: Raw payment data from CSV seed
