@@ -1,0 +1,31 @@
+version: 2
+
+exposures:
+  - name: customer_dashboard
+    type: dashboard
+    maturity: high
+    url: https://example.com/dashboards/customer
+    description: Customer analytics dashboard showing customer metrics and trends
+    depends_on:
+      - ref('customers')
+      - ref('orders')
+    owner:
+      name: Analytics Team
+      email: analytics@example.com
+    tags:
+      - dashboard
+      - customer
+
+  - name: finance_report
+    type: notebook
+    maturity: medium
+    url: https://example.com/notebooks/finance
+    description: Monthly finance report analyzing order revenue
+    depends_on:
+      - ref('orders')
+    owner:
+      name: Finance Team
+      email: finance@example.com
+    tags:
+      - report
+      - finance
