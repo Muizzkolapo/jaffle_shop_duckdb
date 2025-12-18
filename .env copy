@@ -1,0 +1,22 @@
+# Local dbt configuration (no cloud needed for this example)
+DBT_PROJECT_DIR=/Users/muizz/Documents/codeshop/contributions/jaffle_shop_duckdb
+DBT_PATH=/Users/muizz/Documents/codeshop/contributions/jaffle_shop_duckdb/venv/bin/dbt
+
+# Disable cloud-only features
+DISABLE_SEMANTIC_LAYER=true
+DISABLE_DISCOVERY=false
+DISABLE_ADMIN_API=true
+DISABLE_SQL=true
+
+# Enable local tools
+DISABLE_DBT_CLI=false
+DISABLE_DBT_CODEGEN=false
+
+# Real dbt Cloud Discovery API configuration
+DBT_DISCOVERY_API_URL=https://metadata.cloud.getdbt.com/graphql
+DBT_HOST=dk927.us1.dbt.com
+DBT_PROD_ENV_ID=70471823504996
+DBT_DEV_ENV_ID=70471823504996
+DBT_ACCOUNT_ID=70471823518521
+DBT_PROJECT_ID=70471823535408
+DBT_TOKEN=dbtu_C2OQ-54C3lP_rXddqrSyVocB6lR0M8jT9oS8srAXEGSFLR33lY

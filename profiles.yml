@@ -1,0 +1,28 @@
+default:
+  outputs:
+    dev:
+      dataset: jaffle_shop
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      method: oauth
+      location: europe-west2
+      priority: interactive
+      project: project-kphash
+      threads: 2
+      type: bigquery
+  target: dev
+
+jaffle_shop:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: gen-lang-client-0838032408
+      dataset: jaffle_shop
+      location: europe-west2
+      threads: 24
+      keyfile: ~/dbt-cloud-key.json  # Path to your service account JSON
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      priority: interactive

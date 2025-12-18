@@ -1,4 +1,8 @@
+# dbt_project.yml
 name: 'jaffle_shop'
+
+dbt-cloud:
+    project-id: 70471823535408
 
 config-version: 2
 version: '0.1'

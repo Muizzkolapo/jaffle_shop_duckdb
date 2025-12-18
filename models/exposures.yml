@@ -12,9 +12,6 @@ exposures:
     owner:
       name: Analytics Team
       email: analytics@example.com
-    tags:
-      - dashboard
-      - customer
 
   - name: finance_report
     type: notebook
@@ -26,6 +23,3 @@ exposures:
     owner:
       name: Finance Team
       email: finance@example.com
-    tags:
-      - report
-      - finance
