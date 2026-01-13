@@ -1,0 +1,140 @@
+semantic_models:
+  - name: orders
+    description: Order fact table with payment details
+    model: ref('orders')
+
+    defaults:
+      agg_time_dimension: order_date
+
+    entities:
+      - name: order_id
+        type: primary
+        expr: order_id
+
+      - name: customer
+        type: foreign
+        expr: customer_id
+
+    dimensions:
+      - name: order_date
+        type: time
+        description: Date when the order was placed
+        type_params:
+          time_granularity: day
+        config:
+          meta:
+            display_name: "Order Date"
+            cardinality: "HIGH"
+            dimension_type: "TIME"
+            commonly_filtered: true
+            commonly_grouped: true
+            value_format: "Date"
+            example_values:
+              - "2024-01-01"
+              - "2024-12-31"
+            usage_guidance: |
+              Use for time-series analysis of orders.
+              Available granularities: day, week, month, quarter, year.
+              Best for trend analysis and seasonal patterns.
+            related_dimensions:
+              status: "Filter by order status to analyze completed vs pending orders"
+
+      - name: status
+        type: categorical
+        description: Order status (placed, shipped, completed, returned, etc.)
+        config:
+          meta:
+            display_name: "Order Status"
+            cardinality: "LOW"
+            dimension_type: "CATEGORICAL"
+            commonly_filtered: true
+            commonly_grouped: true
+            value_format: "String"
+            example_values:
+              - "placed"
+              - "shipped"
+              - "completed"
+              - "return_pending"
+              - "returned"
+            usage_guidance: |
+              Use to filter or group orders by their current status.
+              Low cardinality (5 values) - great for grouping.
+              Commonly used with order_date for funnel analysis.
+            related_dimensions:
+              order_date: "Combine with date to track status changes over time"
+
+      - name: customer_id
+        type: categorical
+        description: ID of the customer who placed the order
+        config:
+          meta:
+            display_name: "Customer ID"
+            cardinality: "MEDIUM"
+            dimension_type: "CATEGORICAL"
+            commonly_filtered: false
+            commonly_grouped: true
+            value_format: "Integer"
+            usage_guidance: |
+              Use for customer-level aggregations.
+              Medium cardinality - consider using with customer entity instead.
+              Best for calculating customer-specific metrics.
+
+    measures:
+      - name: order_total
+        description: Total order amount
+        agg: sum
+        expr: amount
+
+      - name: order_count
+        description: Count of orders
+        agg: count
+        expr: order_id
+
+      - name: avg_order_value
+        description: Average order value
+        agg: average
+        expr: amount
+
+      - name: credit_card_amount
+        description: Amount paid by credit card
+        agg: sum
+        expr: credit_card_amount
+
+      - name: coupon_amount
+        description: Amount paid by coupon
+        agg: sum
+        expr: coupon_amount
+
+    metrics:
+      - name: total_revenue
+        description: Total revenue from all orders
+        type: simple
+        label: Total Revenue
+        type_params:
+          measure: order_total
+        config:
+          meta:
+            category: "Revenue"
+            format: "currency"
+
+      - name: order_count
+        description: Total number of orders
+        type: simple
+        label: Order Count
+        type_params:
+          measure: order_count
+        config:
+          meta:
+            category: "Volume"
+            format: "number"
+
+      - name: average_order_value
+        description: Average value per order
+        type: simple
+        label: Average Order Value
+        type_params:
+          measure: avg_order_value
+        config:
+          meta:
+            category: "Revenue"
+            format: "currency"
