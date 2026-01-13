@@ -105,36 +105,42 @@ semantic_models:
         agg: sum
         expr: coupon_amount
 
-    metrics:
-      - name: total_revenue
-        description: Total revenue from all orders
-        type: simple
-        label: Total Revenue
-        type_params:
-          measure: order_total
-        config:
-          meta:
-            category: "Revenue"
-            format: "currency"
+metrics:
+  - name: total_revenue
+    description: Total revenue from all orders
+    type: simple
+    label: Total Revenue
+    type_params:
+      measure:
+        name: order_total
+        filter: null
+    config:
+      meta:
+        category: "Revenue"
+        format: "currency"
 
-      - name: order_count
-        description: Total number of orders
-        type: simple
-        label: Order Count
-        type_params:
-          measure: order_count
-        config:
-          meta:
-            category: "Volume"
-            format: "number"
+  - name: order_count
+    description: Total number of orders
+    type: simple
+    label: Order Count
+    type_params:
+      measure:
+        name: order_count
+        filter: null
+    config:
+      meta:
+        category: "Volume"
+        format: "number"
 
-      - name: average_order_value
-        description: Average value per order
-        type: simple
-        label: Average Order Value
-        type_params:
-          measure: avg_order_value
-        config:
-          meta:
-            category: "Revenue"
-            format: "currency"
+  - name: average_order_value
+    description: Average value per order
+    type: simple
+    label: Average Order Value
+    type_params:
+      measure:
+        name: avg_order_value
+        filter: null
+    config:
+      meta:
+        category: "Revenue"
+        format: "currency"
