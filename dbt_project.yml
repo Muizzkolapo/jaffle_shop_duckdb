@@ -30,6 +30,8 @@ seeds:
 models:
   jaffle_shop:
     +materialized: table
+    metricflow_time_spine:
+      +enabled: true
     staging:
       +materialized: view
       +docs:
