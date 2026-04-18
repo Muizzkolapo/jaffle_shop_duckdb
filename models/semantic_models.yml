@@ -1,7 +1,3 @@
-metricflow_time_spine:
-  - name: time_spine
-    model: ref('metricflow_time_spine')
-
 semantic_models:
   - name: orders
     description: Order fact table with payment details
